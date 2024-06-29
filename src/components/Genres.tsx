@@ -1,17 +1,17 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const DataFetcher = () => {
+const Genres = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<null | string>(null);
 
-  const REACT_APP_RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
+  const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `https://api.rawg.io/api/games?key=${REACT_APP_RAWG_API_KEY}`
+          `https://api.rawg.io/api/genres?key=${RAWG_API_KEY}`
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");
@@ -32,20 +32,12 @@ const DataFetcher = () => {
     fetchData();
   }, []);
 
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
-  if (error) {
-    return <div>Error: {error}</div>;
-  }
-
   return (
-    <div>
-      <h1>Games Data</h1>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
-    </div>
+    <>
+      <h2>Genres</h2>
+      <ul>{}</ul>
+    </>
   );
 };
 
-export default DataFetcher;
+export default Genres;
