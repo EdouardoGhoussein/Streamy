@@ -1,13 +1,11 @@
 /* Default Light Mode Styles */
 body {
   background-color: white;
-  color: black;
-  transition: background-color 0.3s, color 0.3s;
+  /*transition: background-color 0.3s, color 0.3s;*/
 }
 
 .App-header {
   background-color: #f8f9fa; /* Example light mode background color */
-  color: black;
 }
 
 input.form-control {
@@ -95,4 +93,60 @@ body.dark-mode input.form-control {
 
 .custom-toggle-input:checked + .custom-toggle-label .custom-toggle-switch {
   transform: translateX(25px);
+}
+
+.list-group-item-custom {
+  color: grey;
+  border: none;
+  padding: 0px;
+}
+
+body.dark-mode li {
+  background-color: #000000;
+  color: white;
+  border: none;
+}
+
+.highlighted {
+  color: gray !important;
+  font-weight: bolder !important;
+}
+
+body.dark-mode .highlighted {
+  color: white !important;
+}
+
+body.dark-mode .card {
+  background-color: #141617;
+  color: white;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+body.dark-mode .page-button,
+.page-arrow {
+  color: white !important;
+}
+
+.page-button,
+.page-arrow {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.page-button.active {
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.page-arrow:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
 }
