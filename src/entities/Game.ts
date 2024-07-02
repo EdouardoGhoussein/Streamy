@@ -6,5 +6,6 @@ export interface Game {
   released: string;
   background_image: string;
   rating: number;
+  metacritic: number;
   platforms: Platform[];
 }

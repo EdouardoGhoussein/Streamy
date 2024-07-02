@@ -152,6 +152,13 @@ body.dark-mode .page-button,
 }
 
 .platform-icon {
-  width: 24px;
-  height: 24px;
+  width: 20px;
+  height: 20px;
+}
+
+.badge {
+  font-size: 0.9rem !important;
+  font-weight: bold !important;
+
+  height: 30px !important;
 }

@@ -122,6 +122,7 @@ const Games = () => {
               name={game.name}
               image={game.background_image}
               rating={game.rating}
+              metacritic={game.metacritic}
               platforms={game.platforms}
             />
           </div>
