@@ -23,6 +23,7 @@ const Games = () => {
 
   const fetchGames = async (page: number) => {
     try {
+      console.log(data);
       setLoading(true);
       const response = await fetch(
         `https://api.rawg.io/api/games?genres=${genreContext.genre.id}&page_size=50&page=${page}&key=${RAWG_API_KEY}`
@@ -47,7 +48,6 @@ const Games = () => {
 
   useEffect(() => {
     fetchGames(currentPage);
-    console.log(data);
   }, [currentPage, genreContext.genre.id]);
 
   const handlePageClick = (page: number) => {
