@@ -1,14 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import GameCard from "./GameCard";
 import { GenreContext } from "../App";
-
-interface Game {
-  id: number;
-  name: string;
-  released: string;
-  background_image: string;
-  rating: number;
-}
+import { Game } from "../entities/Game";
 
 interface Games {
   count: number;
@@ -54,6 +47,7 @@ const Games = () => {
 
   useEffect(() => {
     fetchGames(currentPage);
+    console.log(data);
   }, [currentPage, genreContext.genre.id]);
 
   const handlePageClick = (page: number) => {
@@ -100,7 +94,7 @@ const Games = () => {
           onClick={() => handlePageClick(currentPage - 1)}
           disabled={currentPage === 1}
         >
-          &lt;
+          &lt;&lt;
         </button>
         {pageButtons}
         <button
@@ -108,7 +102,7 @@ const Games = () => {
           onClick={() => handlePageClick(currentPage + 1)}
           disabled={currentPage === totalPages}
         >
-          &gt;
+          &gt;&gt;
         </button>
       </div>
     );
@@ -128,6 +122,7 @@ const Games = () => {
               name={game.name}
               image={game.background_image}
               rating={game.rating}
+              platforms={game.platforms}
             />
           </div>
         ))}
