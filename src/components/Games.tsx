@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import GameCard from "./GameCard";
-import { GenreContext } from "../App";
+import { GenreContext, SearchContext } from "../App";
 import { Game } from "../entities/Game";
 import DropDownMenu, { DropdownOption } from "./DropDownMenu";
 import { useFetchPlatforms } from "../entities/Platfrom";
@@ -20,6 +20,7 @@ const Games = () => {
   const [error, setError] = useState<null | string>(null);
 
   const genreContext = useContext(GenreContext);
+  const { search } = useContext(SearchContext);
 
   const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
@@ -32,19 +33,23 @@ const Games = () => {
     name: "Relvevance",
   });
 
-  const fetchGames = async (page: number) => {
+  const [currentUrl, setCurrentUrl] = useState("");
+
+  const fetchGames = async (url: string, page: number) => {
     try {
+      console.log(url);
       setLoading(true);
-      const plat = platform.id === -1 ? "" : `&parent_platforms=${platform.id}`;
       const response = await fetch(
-        `https://api.rawg.io/api/games?genres=${genreContext.genre.id}&page_size=50&page=${page}&key=${RAWG_API_KEY}&ordering=${order}${plat}`
+        `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page_size=50` +
+          url +
+          `&page=${page}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const result: Games = await response.json();
       setData(result.results);
-      setTotalPages(Math.ceil(result.count / 20)); // Assuming 20 games per page
+      setTotalPages(Math.ceil(result.count / 50)); // Assuming 20 games per page
       setError(null);
     } catch (err) {
       if (err instanceof Error) {
@@ -58,8 +63,23 @@ const Games = () => {
   };
 
   useEffect(() => {
-    fetchGames(currentPage);
-  }, [currentPage, genreContext.genre.id, order, platform]);
+    setCurrentUrl(`&search=${search}`);
+    setCurrentPage(1);
+    //fetchGames(currentUrl, currentPage);
+  }, [search]);
+
+  useEffect(() => {
+    fetchGames(currentUrl, currentPage);
+  }, [currentPage, currentUrl]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+    const plat = platform.id === -1 ? "" : `&parent_platforms=${platform.id}`;
+    setCurrentUrl(
+      `&genres=${genreContext.genre.id}&ordering=${order.id}${plat}`
+    );
+    //fetchGames(currentUrl, currentPage);
+  }, [genreContext.genre.id, order, platform]);
 
   const handlePageClick = (page: number) => {
     if (page >= 1 && page <= totalPages) {

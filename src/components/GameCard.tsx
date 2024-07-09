@@ -11,6 +11,7 @@ interface Props {
 }
 
 const GameCard = ({ name, image, rating, metacritic, platforms }: Props) => {
+  if (platforms === null) platforms = [];
   const uniquePlatforms = Array.from(
     new Set(
       platforms.map((platform) => {
