@@ -37,7 +37,6 @@ const Games = () => {
 
   const fetchGames = async (url: string, page: number) => {
     try {
-      console.log(url);
       setLoading(true);
       const response = await fetch(
         `https://api.rawg.io/api/games?key=${RAWG_API_KEY}&page_size=50` +
@@ -142,9 +141,6 @@ const Games = () => {
   if (error) {
     return <h3>Error: {error}</h3>;
   }
-
-  let { platformOptions } = useFetchPlatforms();
-  platformOptions = [...platformOptions, { id: -1, name: "Platform" }];
 
   const orderOptions = [
     { id: "relevance", name: "Relevance" },
