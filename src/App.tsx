@@ -6,7 +6,8 @@ import DarkModeSwitch from "./components/DarkModeSwitch";
 import SearchBar from "./components/SearchBar";
 import Genres from "./components/Genres";
 import Games from "./components/Games";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
+import { ParentPlatform } from "./entities/Platfrom";
 
 /* Genre context */
 interface GenreTrans {
@@ -48,6 +49,31 @@ function App() {
   const [genre, setGenre] = useState<GenreTrans>(defaultGenreContext.genre);
   const [search, setSearch] = useState<string>(defaultSearchContext.search);
 
+  const [platformOptions, setplatformOptions] = useState<ParentPlatform[]>([]);
+  const REACT_APP_RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await fetch(
+        `https://api.rawg.io/api/platforms/lists/parents?key=${REACT_APP_RAWG_API_KEY}`
+      );
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const result = await response.json();
+      // Map the response to extract id and name
+      const platforms: ParentPlatform[] = result.results.map(
+        (platform: ParentPlatform) => ({
+          id: platform.id,
+          name: platform.name,
+        })
+      );
+      setplatformOptions([...platforms, { id: -1, name: "Platform" }]);
+    };
+
+    fetchData();
+  }, []);
+
   return (
     <div className="App container-fluid">
       <header className="row align-items-center my-3">
@@ -72,7 +98,7 @@ function App() {
         <div className="col-md-10">
           <SearchContext.Provider value={{ search, setSearch }}>
             <GenreContext.Provider value={{ genre, setGenre }}>
-              <Games />
+              <Games platformOptions={platformOptions} />
             </GenreContext.Provider>
           </SearchContext.Provider>
         </div>

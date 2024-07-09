@@ -3,7 +3,7 @@ import GameCard from "./GameCard";
 import { GenreContext, SearchContext } from "../App";
 import { Game } from "../entities/Game";
 import DropDownMenu, { DropdownOption } from "./DropDownMenu";
-import { useFetchPlatforms } from "../entities/Platfrom";
+import { ParentPlatform } from "../entities/Platfrom";
 
 interface Games {
   count: number;
@@ -12,7 +12,11 @@ interface Games {
   results: Game[];
 }
 
-const Games = () => {
+interface Props {
+  platformOptions: ParentPlatform[];
+}
+
+const Games = ({ platformOptions }: Props) => {
   const [data, setData] = useState<Game[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
@@ -64,7 +68,6 @@ const Games = () => {
   useEffect(() => {
     setCurrentUrl(`&search=${search}`);
     setCurrentPage(1);
-    //fetchGames(currentUrl, currentPage);
   }, [search]);
 
   useEffect(() => {
@@ -77,7 +80,6 @@ const Games = () => {
     setCurrentUrl(
       `&genres=${genreContext.genre.id}&ordering=${order.id}${plat}`
     );
-    //fetchGames(currentUrl, currentPage);
   }, [genreContext.genre.id, order, platform]);
 
   const handlePageClick = (page: number) => {
