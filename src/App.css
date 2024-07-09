@@ -167,6 +167,7 @@ body.dark-mode .page-arrow {
 .custom-dropdown-menu {
   background-color: #e6e3e3 !important;
   color: #000000 !important;
+  min-width: 110% !important;
 }
 
 body.dark-mode .custom-dropdown-menu {

@@ -1,13 +1,15 @@
-interface DropdownOption {
-  href: string;
-  label: string;
+export interface DropdownOption {
+  id: number | string;
+  name: string;
 }
 
 interface DropdownOptions {
   options: DropdownOption[];
+  value: DropdownOption;
+  onChange: React.Dispatch<React.SetStateAction<DropdownOption>>;
 }
 
-const DropDownMenu = ({ options }: DropdownOptions) => {
+const DropDownMenu = ({ options, value, onChange }: DropdownOptions) => {
   return (
     <div className="dropdown mb-5">
       <button
@@ -15,8 +17,9 @@ const DropDownMenu = ({ options }: DropdownOptions) => {
         type="button"
         data-bs-toggle="dropdown"
         aria-expanded="false"
+        data-bs-offset="0,20"
       >
-        DropDown &emsp; &emsp; &emsp;
+        {value.name} &emsp; &emsp;
       </button>
       <ul className="custom-dropdown-menu dropdown-menu">
         {options.map((option, index) => (
@@ -24,9 +27,9 @@ const DropDownMenu = ({ options }: DropdownOptions) => {
             <button
               className="dropdown-item"
               type="button"
-              onClick={() => console.log(option)}
+              onClick={() => onChange({ id: option.id, name: option.name })}
             >
-              {option.label}
+              {option.name}
             </button>
           </li>
         ))}

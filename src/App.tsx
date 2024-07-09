@@ -41,7 +41,7 @@ function App() {
           <DarkModeSwitch /> {/* DarkModeSwitch component */}
         </div>
       </header>
-      <div className="row align-items-top my-5">
+      <div className="row align-items-top">
         <div className="col-md-2">
           <GenreContext.Provider value={{ genre, setGenre }}>
             <Genres />

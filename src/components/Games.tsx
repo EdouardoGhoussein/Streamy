@@ -2,7 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import GameCard from "./GameCard";
 import { GenreContext } from "../App";
 import { Game } from "../entities/Game";
-import DropDownMenu from "./DropDownMenu";
+import DropDownMenu, { DropdownOption } from "./DropDownMenu";
+import { useFetchPlatforms } from "../entities/Platfrom";
 
 interface Games {
   count: number;
@@ -22,12 +23,21 @@ const Games = () => {
 
   const RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
+  const [platform, setPlatform] = useState<DropdownOption>({
+    id: -1,
+    name: "Platform",
+  });
+  const [order, setOrder] = useState<DropdownOption>({
+    id: "relevance",
+    name: "Relvevance",
+  });
+
   const fetchGames = async (page: number) => {
     try {
-      console.log(data);
       setLoading(true);
+      const plat = platform.id === -1 ? "" : `&parent_platforms=${platform.id}`;
       const response = await fetch(
-        `https://api.rawg.io/api/games?genres=${genreContext.genre.id}&page_size=50&page=${page}&key=${RAWG_API_KEY}`
+        `https://api.rawg.io/api/games?genres=${genreContext.genre.id}&page_size=50&page=${page}&key=${RAWG_API_KEY}&ordering=${order}${plat}`
       );
       if (!response.ok) {
         throw new Error("Network response was not ok");
@@ -49,7 +59,7 @@ const Games = () => {
 
   useEffect(() => {
     fetchGames(currentPage);
-  }, [currentPage, genreContext.genre.id]);
+  }, [currentPage, genreContext.genre.id, order, platform]);
 
   const handlePageClick = (page: number) => {
     if (page >= 1 && page <= totalPages) {
@@ -113,23 +123,37 @@ const Games = () => {
     return <h3>Error: {error}</h3>;
   }
 
-  const dropdownOptions = [
-    { href: "#/action-1", label: "Option 1" },
-    { href: "#/action-2", label: "Option 2" },
-    { href: "#/action-3", label: "Option 3" },
+  let { platformOptions } = useFetchPlatforms();
+  platformOptions = [...platformOptions, { id: -1, name: "Platform" }];
+
+  const orderOptions = [
+    { id: "relevance", name: "Relevance" },
+    { id: "added", name: "Date added" },
+    { id: "name", name: "Name" },
+    { id: "released", name: "Release date" },
+    { id: "metacritic", name: "Popularity" },
+    { id: "rating", name: "Average rating" },
   ];
 
   return (
     <div className="container">
       <h1 className="display-4" style={{ fontWeight: "900" }}>
-        {genreContext.genre.name} Games
+        {platform.id != -1 && platform.name} {genreContext.genre.name} Games
       </h1>
       <div className="row">
         <div className="col-auto">
-          <DropDownMenu options={dropdownOptions} />
+          <DropDownMenu
+            options={platformOptions}
+            value={platform}
+            onChange={setPlatform}
+          />
         </div>
         <div className="col-auto">
-          <DropDownMenu options={dropdownOptions} />
+          <DropDownMenu
+            options={orderOptions}
+            value={{ ...order, name: "Ordered by: " + order.name }}
+            onChange={setOrder}
+          />
         </div>
       </div>
       <div className="row">
