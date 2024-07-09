@@ -2,6 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import GameCard from "./GameCard";
 import { GenreContext } from "../App";
 import { Game } from "../entities/Game";
+import DropDownMenu from "./DropDownMenu";
 
 interface Games {
   count: number;
@@ -112,9 +113,25 @@ const Games = () => {
     return <h3>Error: {error}</h3>;
   }
 
+  const dropdownOptions = [
+    { href: "#/action-1", label: "Option 1" },
+    { href: "#/action-2", label: "Option 2" },
+    { href: "#/action-3", label: "Option 3" },
+  ];
+
   return (
     <div className="container">
-      <h1>{genreContext.genre.name} Games</h1>
+      <h1 className="display-4" style={{ fontWeight: "900" }}>
+        {genreContext.genre.name} Games
+      </h1>
+      <div className="row">
+        <div className="col-auto">
+          <DropDownMenu options={dropdownOptions} />
+        </div>
+        <div className="col-auto">
+          <DropDownMenu options={dropdownOptions} />
+        </div>
+      </div>
       <div className="row">
         {data.map((game) => (
           <div className="col-md-3 mb-3" key={game.id}>

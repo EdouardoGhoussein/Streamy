@@ -6,13 +6,7 @@ import {
   FaPlaystation,
   FaXbox,
 } from "react-icons/fa";
-import {
-  SiIos,
-  SiPlaystation3,
-  SiPlaystation4,
-  SiPlaystation5,
-  SiNintendo,
-} from "react-icons/si";
+import { SiIos, SiNintendo } from "react-icons/si";
 
 export interface Platform {
   id: number;
