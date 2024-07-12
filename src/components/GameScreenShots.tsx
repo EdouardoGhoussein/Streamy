@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-import { Spinner, Alert, Button } from "react-bootstrap";
+import { Spinner, Alert } from "react-bootstrap";
 
 interface Props {
   id: string | undefined;
@@ -93,8 +93,8 @@ const GameScreenShots = ({ id }: Props) => {
     <div className="container game-screenshots-container ">
       {shotLoading && <Spinner animation="border" />}
       {shotError && <Alert variant="danger">{shotError}</Alert>}
-      <div className="row position-relative">
-        <div className="col-6 main-display mb-3">
+      <div className="row">
+        <div className="col-8 main-display mb-3">
           {selectedMedia && selectedMediaType === "video" ? (
             <video src={selectedMedia} controls className="main-media"></video>
           ) : (
@@ -107,14 +107,10 @@ const GameScreenShots = ({ id }: Props) => {
         </div>
       </div>
       <div className="row">
-        <div className="col-6 d-flex align-items-center position-relative">
-          <Button
-            variant="secondary"
-            className="scroll-button left"
-            onClick={scrollLeft}
-          >
-            &lt;
-          </Button>
+        <div
+          className="col-8 d-flex align-items-center position-relative"
+          style={{ padding: 0 }}
+        >
           <div className="game-screenshots flex-grow-1" ref={scrollRef}>
             {screenshots.map((image) => (
               <div
