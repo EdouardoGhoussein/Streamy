@@ -1,16 +1,29 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { Platform, getPlatformIcon } from "../entities/Platfrom";
 import { Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
+
+interface Plt {
+  platform: Platform;
+}
 
 interface Props {
+  id: number;
   name: string;
   image: string;
   rating: number;
   metacritic: number;
-  platforms: Platform[];
+  platforms: Plt[];
 }
 
-const GameCard = ({ name, image, rating, metacritic, platforms }: Props) => {
+const GameCard = ({
+  id,
+  name,
+  image,
+  rating,
+  metacritic,
+  platforms,
+}: Props) => {
   if (platforms === null) platforms = [];
   const uniquePlatforms = Array.from(
     new Set(
@@ -49,45 +62,47 @@ const GameCard = ({ name, image, rating, metacritic, platforms }: Props) => {
   };
 
   return (
-    <div className="card h-100 rounded-3 shadow-sm">
-      <img src={image} className="card-img-top rounded-top" alt={name} />
-      <div className="card-body">
-        <div className="d-flex justify-content-between mb-3">
-          <div className="platform-icons d-flex justify-content-start mb-3">
-            {uniquePlatforms.map((slug) => {
-              const platformIcon = getPlatformIcon(slug);
-              return platformIcon ? (
-                <span
-                  key={slug}
-                  className="platform-icon me-2"
-                  title={platformIcon.alt}
-                >
-                  {platformIcon.icon}
-                </span>
-              ) : null;
-            })}
+    <Link to={`/Streamy/game/${id}`}>
+      <div className="card h-100 rounded-3 shadow-sm">
+        <img src={image} className="card-img-top rounded-top" alt={name} />
+        <div className="card-body">
+          <div className="d-flex justify-content-between mb-3">
+            <div className="platform-icons d-flex justify-content-start mb-3">
+              {uniquePlatforms.map((slug) => {
+                const platformIcon = getPlatformIcon(slug);
+                return platformIcon ? (
+                  <span
+                    key={slug}
+                    className="platform-icon me-2"
+                    title={platformIcon.alt}
+                  >
+                    {platformIcon.icon}
+                  </span>
+                ) : null;
+              })}
+            </div>
+            {metacritic > 0 && (
+              <Badge
+                pill
+                bg={getMetacriticBadgeColor(metacritic)}
+                className="d-flex align-items-center"
+              >
+                {metacritic}
+              </Badge>
+            )}{" "}
           </div>
-          {metacritic > 0 && (
-            <Badge
-              pill
-              bg={getMetacriticBadgeColor(metacritic)}
-              className="d-flex align-items-center"
+          <h5 className="mb-3 card-title">{name}</h5>
+          <div className="mb-3 card-text">
+            <div
+              className="rating d-flex align-items-center"
+              style={{ color: "gold" }}
             >
-              {metacritic}
-            </Badge>
-          )}{" "}
-        </div>
-        <h5 className="mb-3 card-title">{name}</h5>
-        <div className="mb-3 card-text">
-          <div
-            className="rating d-flex align-items-center"
-            style={{ color: "gold" }}
-          >
-            {getStars(rating)}
+              {getStars(rating)}
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </Link>
   );
 };
 

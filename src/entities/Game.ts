@@ -1,5 +1,9 @@
 import { Platform } from "./Platfrom";
 
+interface Plt {
+  platform: Platform;
+}
+
 export interface Game {
   id: number;
   name: string;
@@ -7,5 +11,5 @@ export interface Game {
   background_image: string;
   rating: number;
   metacritic: number;
-  platforms: Platform[];
+  platforms: Plt[];
 }

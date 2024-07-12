@@ -1,0 +1,84 @@
+body {
+  background-color: black;
+}
+
+.game-screenshots-container {
+  position: relative;
+  overflow: hidden;
+  padding: 20px;
+}
+
+.main-display {
+  height: auto;
+  padding: 0px 10px;
+  text-align: center;
+}
+
+.main-media {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.game-screenshots {
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  /* -ms-overflow-style: none; /* IE and Edge */
+  /*scrollbar-width: none; /* Firefox */
+
+  height: 200%;
+  transform: translateY(-25%);
+}
+
+.game-screenshots::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+.thumbnail-container {
+  position: relative;
+  margin: 0 5px;
+  max-height: 100%;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.3s;
+
+  top: 50%;
+}
+
+.thumbnail-container.selected .thumbnail-img {
+  border: 5px solid white;
+  border-radius: 4px;
+}
+
+.thumbnail-container.selected .bi-triangle-fill {
+  position: absolute;
+  top: -15%; /* Adjust as needed to position the icon above the image */
+  left: 50%;
+  transform: translateX(-50%);
+  color: white;
+  font-size: 175%;
+}
+
+.thumbnail-img {
+  max-height: 100px;
+  border-radius: 4px;
+}
+
+.thumbnail-img:hover {
+  cursor: pointer;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+}
+
+.scroll-button.left {
+  left: 0;
+}
+
+.scroll-button.right {
+  right: 0;
+}

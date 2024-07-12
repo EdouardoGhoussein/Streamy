@@ -178,6 +178,7 @@ const Games = ({ platformOptions }: Props) => {
         {data.map((game) => (
           <div className="col-md-3 mb-3" key={game.id}>
             <GameCard
+              id={game.id}
               name={game.name}
               image={game.background_image}
               rating={game.rating}
