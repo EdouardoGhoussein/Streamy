@@ -56,7 +56,7 @@ body {
 }
 
 .game-screenshots::-webkit-scrollbar-button:single-button {
-  background-color: #888; /* Color of the scrollbar buttons */
+  background-color: #888888; /* Color of the scrollbar buttons */
   border: 2px solid #333;
   width: 40px;
   background-repeat: no-repeat;
@@ -94,11 +94,25 @@ body {
 
 .thumbnail-container.selected .bi-triangle-fill {
   position: absolute;
-  top: -15%; /* Adjust as needed to position the icon above the image */
+  top: -10%; /* Adjust as needed to position the icon above the image */
   left: 50%;
   transform: translateX(-50%);
   color: white;
+  font-size: 120%;
+  border: none;
+}
+
+.thumbnail-container .bi-caret-right-square-fill,
+.thumbnail-container .bi-caret-right-fill {
+  position: absolute;
+  left: 50%;
+  top: 12%;
+  transform: translateX(-50%);
   font-size: 175%;
+}
+
+.thumbnail-container .bi-caret-right-fill {
+  color: black;
 }
 
 .thumbnail-img {
@@ -108,27 +122,4 @@ body {
 
 .thumbnail-img:hover {
   cursor: pointer;
-}
-
-.scroll-button {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  background: rgba(255, 255, 255, 0.8);
-  border: none;
-  width: 30px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-}
-
-.scroll-button.left {
-  left: 0;
-}
-
-.scroll-button.right {
-  right: 0;
 }
