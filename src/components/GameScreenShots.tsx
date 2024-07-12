@@ -84,18 +84,6 @@ const GameScreenShots = ({ id }: Props) => {
     fetchTrailers();
   }, []);
 
-  const scrollLeft = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: -300, behavior: "smooth" });
-    }
-  };
-
-  const scrollRight = () => {
-    if (scrollRef.current) {
-      scrollRef.current.scrollBy({ left: 300, behavior: "smooth" });
-    }
-  };
-
   const handleThumbnailClick = (media: string, type: "image" | "video") => {
     setSelectedMedia(media);
     setSelectedMediaType(type);
@@ -167,13 +155,6 @@ const GameScreenShots = ({ id }: Props) => {
               </div>
             ))}
           </div>
-          <Button
-            variant="secondary"
-            className="scroll-button right"
-            onClick={scrollRight}
-          >
-            &gt;
-          </Button>
         </div>
       </div>
     </div>
