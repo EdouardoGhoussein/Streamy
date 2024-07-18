@@ -49,8 +49,10 @@ const Rating = ({ rating, rating_counts }: Props) => {
           }}
         />
       </div>
-      <div>
-        <a>{rating_counts} ratings</a>
+      <div style={{ marginBottom: "50px" }}>
+        <a className="link-opacity-50 rating-link">
+          {rating_counts}&nbsp;RATINGS
+        </a>
       </div>
     </div>
   );

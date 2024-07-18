@@ -34,7 +34,7 @@ const GameDescription = ({
         </div>
         <div className="d-flex col-auto h-100">
           {parent_platforms.map((plat) => (
-            <PlatformIcon slug={plat.platform.slug} />
+            <PlatformIcon key={plat.platform.id} slug={plat.platform.slug} />
           ))}{" "}
         </div>
         <div className="col-2 w-auto align-content-center">

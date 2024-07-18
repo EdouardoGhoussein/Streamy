@@ -1,5 +1,5 @@
 import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
-import { Platform, getPlatformIcon } from "../entities/Platfrom";
+import { Platform } from "../entities/Platfrom";
 import { Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import PlatformIcon from "./PlatformIcon";
@@ -70,7 +70,7 @@ const GameCard = ({
           <div className="d-flex justify-content-between mb-3">
             <div className="platform-icons d-flex justify-content-start mb-3">
               {uniquePlatforms.map((slug) => (
-                <PlatformIcon slug={slug} />
+                <PlatformIcon key={slug} slug={slug} />
               ))}
             </div>
             {metacritic > 0 && (

@@ -142,3 +142,81 @@ body.dark-mode .etiquette {
   background-color: white;
   color: black;
 }
+
+.rating-link {
+  color: hsla(0, 0%, 0%, 0.4) !important;
+  cursor: pointer;
+  font-size: small;
+  letter-spacing: 1px;
+}
+
+body.dark-mode .rating-link {
+  color: hsla(0, 0%, 100%, 0.4) !important;
+}
+
+.exceptional-bar {
+  background-image: linear-gradient(180deg, #b4ec51, #429321);
+}
+
+.recommended-bar {
+  background-image: linear-gradient(0deg, #4354b9, #649bff);
+}
+
+.meh-bar {
+  background-image: linear-gradient(180deg, #fad961, #f76b1c);
+}
+
+.skip-bar {
+  background-image: linear-gradient(180deg, #ff5764, #f11a2a);
+}
+
+.progress-bar {
+  cursor: pointer;
+  position: relative;
+  height: 50px !important;
+  overflow: hidden;
+}
+
+.progress-bar:hover,
+.bar-hovered {
+  -webkit-box-shadow: 0 0 10px 0 #000000;
+  box-shadow: 0 0 10px 0 #000000;
+}
+
+body.dark-mode .progress-bar:hover,
+body.dark-mode .bar-hovered {
+  -webkit-box-shadow: 0 0 10px 0 #fff;
+  box-shadow: 0 0 10px 0 #fff;
+}
+
+.progression {
+  margin-bottom: 20px;
+}
+
+.progression > :first-child {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.progression > :last-child {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+.rating-info {
+  border-radius: 24.5px;
+}
+
+body.dark-mode .rating-info:hover,
+body.dark-mode .info-hovered {
+  -webkit-box-shadow: 0 0 0 2px hsla(0, 0%, 100%, 0.2);
+  box-shadow: 0 0 0 2px hsla(0, 0%, 100%, 0.2);
+  opacity: 1;
+}
+
+.rating-info:hover,
+.info-hovered {
+  -webkit-box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.2);
+  box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.2);
+  opacity: 1;
+}

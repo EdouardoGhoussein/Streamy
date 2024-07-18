@@ -3,25 +3,15 @@ import GameScreenShots from "../components/GameScreenShots";
 import "./GamePage.css";
 import { useEffect, useState } from "react";
 import GameDescription from "../components/GameDescription";
-import { Platform } from "../entities/Platfrom";
 import Rating from "../components/Rating";
-
-interface Game {
-  id: number;
-  name: string;
-  description: string;
-  background_image: string;
-  released: string;
-  parent_platforms: { platform: Platform }[];
-  playtime: number;
-  rating: number;
-  ratings_count: number;
-}
+import { GameDetail } from "../entities/GameDetail";
+import RatingBar from "../components/RatingBar";
+import About from "../components/About";
 
 const GamePage = () => {
   const params = useParams<string>();
 
-  const [data, setData] = useState<Game | null>(null);
+  const [data, setData] = useState<GameDetail | null>(null);
 
   const REACT_APP_RAWG_API_KEY = import.meta.env.VITE_RAWG_API_KEY;
 
@@ -45,9 +35,9 @@ const GamePage = () => {
           : `linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1)), url(${data?.background_image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
-        backgroundAttachment: "fixed",
       }}
     >
+      {data?.id}
       <div className={true && "row justify-content-center"}>
         <div className="col-md-2"></div>
         <div className="col-md-4">
@@ -61,10 +51,8 @@ const GamePage = () => {
             rating={data ? data.rating : 0}
             rating_counts={data ? data.ratings_count : 0}
           />
-          <div
-            style={{ width: "100%" }}
-            dangerouslySetInnerHTML={{ __html: data ? data.description : "" }}
-          />
+          <RatingBar ratings={data ? data.ratings : []} />
+          <About description={data ? data.description : ""} />
         </div>
         <div className="col-md-4">
           <GameScreenShots id={params.id} />
