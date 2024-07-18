@@ -167,7 +167,7 @@ const GameScreenShots = ({ id }: Props) => {
       {shotLoading && <Spinner animation="border" />}
       {shotError && <Alert variant="danger">{shotError}</Alert>}
       <div className="row">
-        <div className="col-8 main-display mb-3">
+        <div className="col-12 main-display mb-3">
           {selectedMedia && selectedMedia.type === "video" ? (
             <video
               src={selectedMedia.url}
@@ -192,7 +192,7 @@ const GameScreenShots = ({ id }: Props) => {
       </div>
       <div className="row">
         <div
-          className="col-8 d-flex align-items-center position-relative"
+          className="col-12 d-flex align-items-center position-relative"
           style={{ padding: 0 }}
         >
           <div className="game-screenshots flex-grow-1">

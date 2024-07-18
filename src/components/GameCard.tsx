@@ -2,6 +2,7 @@ import { FaStar, FaStarHalfAlt, FaRegStar } from "react-icons/fa";
 import { Platform, getPlatformIcon } from "../entities/Platfrom";
 import { Badge } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import PlatformIcon from "./PlatformIcon";
 
 interface Plt {
   platform: Platform;
@@ -68,18 +69,9 @@ const GameCard = ({
         <div className="card-body">
           <div className="d-flex justify-content-between mb-3">
             <div className="platform-icons d-flex justify-content-start mb-3">
-              {uniquePlatforms.map((slug) => {
-                const platformIcon = getPlatformIcon(slug);
-                return platformIcon ? (
-                  <span
-                    key={slug}
-                    className="platform-icon me-2"
-                    title={platformIcon.alt}
-                  >
-                    {platformIcon.icon}
-                  </span>
-                ) : null;
-              })}
+              {uniquePlatforms.map((slug) => (
+                <PlatformIcon slug={slug} />
+              ))}
             </div>
             {metacritic > 0 && (
               <Badge

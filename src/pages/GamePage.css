@@ -1,7 +1,3 @@
-body {
-  background-color: black;
-}
-
 .game-screenshots-container {
   position: relative;
   overflow: hidden;
@@ -88,7 +84,7 @@ body {
 }
 
 .thumbnail-container.selected .thumbnail-img {
-  border: 5px solid white;
+  border: 5px solid #4682b4;
   border-radius: 4px;
 }
 
@@ -97,7 +93,7 @@ body {
   top: -10%; /* Adjust as needed to position the icon above the image */
   left: 50%;
   transform: translateX(-50%);
-  color: white;
+  color: #4682b4;
   font-size: 120%;
   border: none;
 }
@@ -122,4 +118,27 @@ body {
 
 .thumbnail-img:hover {
   cursor: pointer;
+}
+
+body.dark-mode .thumbnail-container.selected .thumbnail-img {
+  border-color: white;
+}
+body.dark-mode .thumbnail-container .bi-triangle-fill {
+  color: white;
+}
+
+.platform-icon {
+  height: 80%;
+}
+
+.etiquette {
+  background-color: black;
+  color: white;
+  border-radius: 5px;
+  padding: 5px 10px !important;
+}
+
+body.dark-mode .etiquette {
+  background-color: white;
+  color: black;
 }
