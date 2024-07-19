@@ -205,6 +205,7 @@ body.dark-mode .bar-hovered {
 
 .rating-info {
   border-radius: 24.5px;
+  cursor: pointer;
 }
 
 body.dark-mode .rating-info:hover,
@@ -218,5 +219,58 @@ body.dark-mode .info-hovered {
 .info-hovered {
   -webkit-box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.2);
   box-shadow: 0 0 0 2px hsla(0, 0%, 0%, 0.2);
+  opacity: 1;
+}
+
+.store-button {
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  border-radius: 6px;
+  transition: all 0.3s;
+  text-decoration: none;
+  font-size: 1.2em;
+  text-align: center;
+  background-color: hsla(0, 0%, 0%, 0.1);
+  color: hsla(0, 0%, 0%, 0.5);
+}
+
+body.dark-mode .store-button:hover {
+  background-color: hsla(0, 0%, 100%, 0.9);
+  color: hsla(0, 0%, 0%, 1);
+}
+
+.store-button:hover {
+  background-color: hsla(0, 0%, 0%, 0.9);
+  color: hsla(0, 0%, 100%, 1);
+}
+body.dark-mode .store-button {
+  background-color: hsla(0, 0%, 100%, 0.1);
+  color: hsla(0, 0%, 100%, 0.5);
+}
+
+.store-button svg g,
+.store-button svg path {
+  fill: #000000;
+  opacity: 0.4;
+}
+body.dark-mode .store-button:hover svg path,
+body.dark-mode .store-button:hover svg g {
+  fill: #000000;
+  opacity: 1;
+}
+
+body.dark-mode .store-button svg g {
+  fill: #fff;
+  opacity: 1;
+}
+body.dark-mode .store-button svg path {
+  fill: #fff;
+  opacity: 0.4;
+}
+.store-button:hover svg path,
+.store-button:hover svg g {
+  fill: #fff;
   opacity: 1;
 }

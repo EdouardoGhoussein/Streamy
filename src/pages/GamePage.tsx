@@ -7,6 +7,7 @@ import Rating from "../components/Rating";
 import { GameDetail } from "../entities/GameDetail";
 import RatingBar from "../components/RatingBar";
 import About from "../components/About";
+import WhereToBy from "../components/WhereToBy";
 
 const GamePage = () => {
   const params = useParams<string>();
@@ -56,6 +57,7 @@ const GamePage = () => {
         </div>
         <div className="col-md-4">
           <GameScreenShots id={params.id} />
+          <WhereToBy stores={data ? data.stores : []} />
         </div>
       </div>
     </div>

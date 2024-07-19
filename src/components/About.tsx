@@ -12,7 +12,7 @@ const About = ({ description }: Props) => {
   };
   return (
     <div>
-      <h1>About</h1>
+      <h1 className="mb-3">About</h1>
       <div>
         <div
           style={{

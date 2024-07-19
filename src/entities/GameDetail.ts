@@ -1,4 +1,5 @@
 import { Platform } from "./Platfrom";
+import { StoreID } from "./Store";
 
 export interface GameDetail {
   id: number;
@@ -11,6 +12,7 @@ export interface GameDetail {
   rating: number;
   ratings_count: number;
   ratings: Rating[];
+  stores: StoreID[];
 }
 
 export interface Rating {
