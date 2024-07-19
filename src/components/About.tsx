@@ -23,8 +23,8 @@ const About = ({ description }: Props) => {
         >
           <div dangerouslySetInnerHTML={{ __html: description }} />
         </div>
-        <button onClick={toggleDescription}>
-          {showFullDescription ? "Show Less" : "Show More"}
+        <button className="show-text" onClick={toggleDescription}>
+          {showFullDescription ? "show less..." : "show more..."}
         </button>
       </div>
     </div>

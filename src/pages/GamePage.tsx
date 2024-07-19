@@ -8,6 +8,8 @@ import { GameDetail } from "../entities/GameDetail";
 import RatingBar from "../components/RatingBar";
 import About from "../components/About";
 import WhereToBy from "../components/WhereToBy";
+import GameAdditionalInfo from "../components/GameAdditionalInfo";
+import Achivements from "../components/Achievements";
 
 const GamePage = () => {
   const params = useParams<string>();
@@ -39,9 +41,9 @@ const GamePage = () => {
       }}
     >
       {data?.id}
-      <div className={true && "row justify-content-center"}>
+      <div className="row justify-content-center">
         <div className="col-md-2"></div>
-        <div className="col-md-4">
+        <div className="col-md-4 m-5 p-0">
           <GameDescription
             name={data ? data.name : "Undefined"}
             released={data ? data.released : "01-01-2000"}
@@ -54,10 +56,23 @@ const GamePage = () => {
           />
           <RatingBar ratings={data ? data.ratings : []} />
           <About description={data ? data.description : ""} />
+          <GameAdditionalInfo
+            id={data ? data.id : 0}
+            platforms={data ? data.platforms : []}
+            metacritic={data ? data.metacritic : 0}
+            genres={data ? data.genres : []}
+            developers={data ? data.developers : []}
+            publishers={data ? data.publishers : []}
+            released={data ? data.released : "01-01-2000"}
+            esrb_rating={data?.esrb_rating}
+            tags={data ? data.tags : []}
+            website={data ? data.website : ""}
+          />
         </div>
         <div className="col-md-4">
           <GameScreenShots id={params.id} />
           <WhereToBy stores={data ? data.stores : []} />
+          <Achivements id={data ? data.id : 0} />
         </div>
       </div>
     </div>

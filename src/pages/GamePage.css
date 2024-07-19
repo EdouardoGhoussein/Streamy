@@ -263,6 +263,8 @@ body.dark-mode .store-button:hover svg g {
 
 body.dark-mode .store-button svg g {
   fill: #fff;
+}
+.store-button svg g {
   opacity: 1;
 }
 body.dark-mode .store-button svg path {
@@ -273,4 +275,32 @@ body.dark-mode .store-button svg path {
 .store-button:hover svg g {
   fill: #fff;
   opacity: 1;
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: 500;
+  color: hsla(0, 0%, 0%, 0.4);
+}
+
+body.dark-mode h4 {
+  color: hsla(0, 0%, 100%, 0.2);
+}
+
+.show-text {
+  background: none;
+  border: none;
+  color: black;
+}
+
+.show-text:hover {
+  color: #333 !important;
+}
+
+body.dark-mode .show-text:hover {
+  color: #888 !important;
+}
+
+body.dark-mode .show-text {
+  color: white !important;
 }

@@ -8,7 +8,7 @@ interface Info {
   playtime: number;
 }
 
-const formatDate = (dateString: string): string => {
+export const formatDate = (dateString: string): string => {
   const date = new Date(dateString);
   return date
     .toLocaleDateString("en-US", {
@@ -25,10 +25,9 @@ const GameDescription = ({
   parent_platforms,
   playtime,
 }: Info) => {
-  console.log(parent_platforms);
   return (
     <div>
-      <div className="row justify-content-start">
+      <div className="row justify-content-center mb-2">
         <div className="col-2 w-auto p-2 align-content-center etiquette">
           {formatDate(released)}
         </div>
