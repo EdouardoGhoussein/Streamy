@@ -9,9 +9,21 @@ import RatingBar from "../components/RatingBar";
 import About from "../components/About";
 import WhereToBy from "../components/WhereToBy";
 import GameAdditionalInfo from "../components/GameAdditionalInfo";
-import Achivements from "../components/Achievements";
+import Achievements from "../components/Achievements";
+import SideBar from "../components/SideBar";
+import RegisteringComponent from "../components/RegisteringComponent";
 
 const GamePage = () => {
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("darkMode");
+    const isDarkMode = savedTheme ? JSON.parse(savedTheme) : true;
+    if (isDarkMode) {
+      document.body.classList.add("dark-mode");
+    } else {
+      document.body.classList.remove("dark-mode");
+    }
+  }, []);
+
   const params = useParams<string>();
 
   const [data, setData] = useState<GameDetail | null>(null);
@@ -31,7 +43,7 @@ const GamePage = () => {
 
   return (
     <div
-      className="container-fluid vh-100 d-flex flex-column"
+      className="container-fluid ms-0 vh-100 d-flex flex-column"
       style={{
         backgroundImage: document.body.classList.contains("dark-mode")
           ? `linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 1)), url(${data?.background_image})`
@@ -40,22 +52,30 @@ const GamePage = () => {
         backgroundPosition: "center",
       }}
     >
-      {data?.id}
       <div className="row justify-content-center">
-        <div className="col-md-2"></div>
+        <div className="col-md-3 mt-5">
+          <SideBar />
+        </div>
+
         <div className="col-md-4 m-5 p-0">
-          <GameDescription
-            name={data ? data.name : "Undefined"}
-            released={data ? data.released : "01-01-2000"}
-            parent_platforms={data ? data.parent_platforms : []}
-            playtime={data ? data.playtime : 0}
-          />
-          <Rating
-            rating={data ? data.rating : 0}
-            rating_counts={data ? data.ratings_count : 0}
-          />
-          <RatingBar ratings={data ? data.ratings : []} />
-          <About description={data ? data.description : ""} />
+          <RegisteringComponent id="Game info">
+            <GameDescription
+              name={data ? data.name : "Undefined"}
+              released={data ? data.released : "01-01-2000"}
+              parent_platforms={data ? data.parent_platforms : []}
+              playtime={data ? data.playtime : 0}
+            />
+          </RegisteringComponent>
+          <RegisteringComponent id="Rating">
+            <Rating
+              rating={data ? data.rating : 0}
+              rating_counts={data ? data.ratings_count : 0}
+            />
+            <RatingBar ratings={data ? data.ratings : []} />
+          </RegisteringComponent>
+          <RegisteringComponent id="About">
+            <About description={data ? data.description : ""} />
+          </RegisteringComponent>
           <GameAdditionalInfo
             id={data ? data.id : 0}
             platforms={data ? data.platforms : []}
@@ -70,9 +90,15 @@ const GamePage = () => {
           />
         </div>
         <div className="col-md-4">
-          <GameScreenShots id={params.id} />
-          <WhereToBy stores={data ? data.stores : []} />
-          <Achivements id={data ? data.id : 0} />
+          <RegisteringComponent id="Trailers & images">
+            <GameScreenShots id={params.id} />
+          </RegisteringComponent>
+          <RegisteringComponent id="Where to buy">
+            <WhereToBy stores={data ? data.stores : []} />
+          </RegisteringComponent>
+          <RegisteringComponent id="Achievements">
+            <Achievements id={data ? data.id : 0} />
+          </RegisteringComponent>
         </div>
       </div>
     </div>

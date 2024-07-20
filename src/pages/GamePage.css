@@ -250,6 +250,28 @@ body.dark-mode .store-button {
   color: hsla(0, 0%, 100%, 0.5);
 }
 
+.store-button svg g rect {
+  fill: none;
+  opacity: 0.4;
+  stroke: black;
+}
+
+body.dark-mode .store-button svg g rect {
+  fill: none;
+  opacity: 0.4;
+  stroke: white;
+}
+
+.store-button:hover svg g rect {
+  stroke: white;
+  opacity: 1;
+}
+
+body.dark-mode .store-button:hover svg g rect {
+  stroke: black;
+  opacity: 1;
+}
+
 .store-button svg g,
 .store-button svg path {
   fill: #000000;
@@ -271,6 +293,7 @@ body.dark-mode .store-button svg path {
   fill: #fff;
   opacity: 0.4;
 }
+
 .store-button:hover svg path,
 .store-button:hover svg g {
   fill: #fff;
@@ -303,4 +326,49 @@ body.dark-mode .show-text:hover {
 
 body.dark-mode .show-text {
   color: white !important;
+}
+
+.achievement {
+  color: black !important;
+}
+
+body.dark-mode .achievement {
+  color: hsla(0, 0%, 100%, 0.5) !important;
+}
+
+hr {
+  width: 80%;
+  border-bottom: 3px solid black;
+}
+
+body.dark-mode hr {
+  border-color: white;
+}
+
+.sticky-component {
+  position: fixed;
+  height: 100vh;
+  overflow: auto;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.sticky-component::-webkit-scrollbar {
+  display: none;
+}
+
+.btn-transparent {
+  color: black;
+  width: 100%;
+}
+
+body.dark-mode .btn-transparent {
+  color: white;
+}
+.sidebar-element {
+  background-color: transparent;
+  border: none;
+}
+
+h3 {
+  font-size: 24px;
 }

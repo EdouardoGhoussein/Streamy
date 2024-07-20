@@ -6,7 +6,7 @@ interface Props {
   id: number;
 }
 
-const Achivements = ({ id }: Props) => {
+const Achievements = ({ id }: Props) => {
   const [achievements, setAchievements] = useState<Achievement[] | undefined>(
     []
   );
@@ -27,7 +27,11 @@ const Achivements = ({ id }: Props) => {
       <h1 className="p-2">Achivements</h1>
       <div className="list-group">
         {achievements?.map((achievement, index) => (
-          <div className="list-group-item" key={index}>
+          <div
+            className="list-group-item"
+            style={{ backgroundColor: "transparent", border: "none" }}
+            key={index}
+          >
             <AchievementDesc
               name={achievement.name}
               description={achievement.description}
@@ -41,4 +45,4 @@ const Achivements = ({ id }: Props) => {
   );
 };
 
-export default Achivements;
+export default Achievements;

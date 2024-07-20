@@ -75,7 +75,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App container-fluid">
+    <div className="App container-fluid mb-5">
       <header className="row align-items-center my-3">
         <div className="col-md-1">
           <img src="image.png" alt="The Game Hub" className="img-fluid" />

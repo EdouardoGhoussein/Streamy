@@ -5,6 +5,7 @@ import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import NotFoundPage from "./pages/NotFoundPage.tsx";
 import GamePage from "./pages/GamePage.tsx";
+import { RefProvider } from "./hooks/useScroll.tsx";
 
 const router = createBrowserRouter([
   {
@@ -13,7 +14,11 @@ const router = createBrowserRouter([
   },
   {
     path: "/Streamy/game/:id",
-    element: <GamePage />,
+    element: (
+      <RefProvider>
+        <GamePage />
+      </RefProvider>
+    ),
   },
   {
     path: "*",

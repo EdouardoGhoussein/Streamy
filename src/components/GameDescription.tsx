@@ -40,7 +40,9 @@ const GameDescription = ({
           AVERAGE PLAYTIME: {playtime} HOURS
         </div>
       </div>
-      <h1 className="display-1 fw-bold text-start">{name}</h1>
+      <h1 id="test" className="display-1 fw-bold text-start">
+        {name}
+      </h1>
     </div>
   );
 };
