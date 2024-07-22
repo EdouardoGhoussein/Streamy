@@ -24,7 +24,7 @@ const Achievements = ({ id }: Props) => {
   }, [id]);
   return (
     <div className="mt-5">
-      <h1 className="p-2">Achivements</h1>
+      <h1 className="p-2">Achievements</h1>
       <div className="list-group">
         {achievements?.map((achievement, index) => (
           <div

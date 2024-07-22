@@ -31,7 +31,7 @@ const slugToLogoMap: Record<string, JSX.Element> = {
 const WhereToBy = ({ stores }: Props) => {
   return (
     <div className="mt-5">
-      <h1 className="p-2">Where to by</h1>
+      <h1 className="p-2">Where to buy</h1>
       <div className="container mt-4">
         <div className="row">
           {stores.map((store, index) => (
