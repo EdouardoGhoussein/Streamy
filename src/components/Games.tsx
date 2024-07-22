@@ -34,7 +34,7 @@ const Games = ({ platformOptions }: Props) => {
   });
   const [order, setOrder] = useState<DropdownOption>({
     id: "relevance",
-    name: "Relvevance",
+    name: "Relevance",
   });
 
   const [currentUrl, setCurrentUrl] = useState("");
